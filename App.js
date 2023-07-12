@@ -1,65 +1,42 @@
-import { useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import { useFonts } from "expo-font";
-import {
-  StyleSheet,
-  View,
-  ImageBackground,
-  Dimensions,
-  Platform,
-  TouchableWithoutFeedback,
-  Keyboard,
-  KeyboardAvoidingView,
-} from "react-native";
-import RegistrationScreen from "./Screens/Components/RegistrationScreen/RegistrationScreen";
-import LoginScreens from "./Screens/Components/LoginScreens/LoginScreens";
+import { StyleSheet, Dimensions } from "react-native";
+import "react-native-gesture-handler";
+import { RegistrationScreen } from "./Screens/RegistrationScreen/RegistrationScreen";
+import LoginScreen from "./Screens/LoginScreens/LoginScreens";
+import { Home } from "./Screens/Home/Home";
+
+const MainStack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    "Roboto-Medium": require("./Screens/fonts/Roboto-Medium.ttf"),
+    "Roboto-Medium": require("./src/fonts/Roboto-Medium.ttf"),
   });
-  const [activePage, setActivePage] = useState("registration");
 
   if (!fontsLoaded) {
     return null;
   }
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={styles.container}>
-        <ImageBackground
-          style={styles.img}
-          source={require("./Screens/img/background.jpeg")}
-        >
-          <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={styles.keybord}
-          >
-            {activePage === "registration" ? (
-              <RegistrationScreen swapPage={setActivePage}></RegistrationScreen>
-            ) : (
-              <LoginScreens swapPage={setActivePage}></LoginScreens>
-            )}
-          </KeyboardAvoidingView>
-        </ImageBackground>
-      </View>
-    </TouchableWithoutFeedback>
+    <NavigationContainer>
+      <MainStack.Navigator initialRouteName="Login">
+        <MainStack.Screen
+          name="Registration"
+          component={RegistrationScreen}
+          options={{ title: "Registration", headerShown: false }}
+        />
+        <MainStack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ title: "Login", headerShown: false }}
+        />
+        <MainStack.Screen
+          name="Home"
+          component={Home}
+          options={{ title: "Home", headerShown: false }}
+        />
+      </MainStack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  keybord: {
-    flex: 1,
-    marginTop: -150,
-    paddingTop: -50,
-  },
-  img: {
-    position: "absolute",
-    left: 0,
-    top: 0,
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
-  },
-  container: {
-    flex: 1,
-  },
-});
