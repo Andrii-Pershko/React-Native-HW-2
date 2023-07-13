@@ -98,7 +98,7 @@ export function RegistrationScreen({ navigation }) {
               }}
             >
               <View style={styles.addImg}>
-                <Image 
+                <Image
                   style={styles.svg}
                   source={require("../../src/img/add.png")}
                 ></Image>

@@ -21,7 +21,7 @@ export const Home = () => {
 
   return (
     <Tabs.Navigator
-      tabBarOptions={{
+      screenOptions={({ route }) => ({
         activeTintColor: "blue",
         inactiveTintColor: "gray",
         labelStyle: {
@@ -33,8 +33,6 @@ export const Home = () => {
           borderTopWidth: 5,
           borderTopColor: "lightgray",
         },
-      }}
-      screenOptions={({ route }) => ({
         tabBarIcon: () => {
           if (route.name === "Публікації") {
             return (
