@@ -1,7 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useFonts } from "expo-font";
-import { StyleSheet, Dimensions } from "react-native";
 import "react-native-gesture-handler";
 import { RegistrationScreen } from "./Screens/RegistrationScreen/RegistrationScreen";
 import LoginScreen from "./Screens/LoginScreens/LoginScreens";
