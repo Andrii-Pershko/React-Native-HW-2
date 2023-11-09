@@ -9,6 +9,7 @@ import { Home } from "./Screens/Home/Home";
 const MainStack = createStackNavigator();
 
 export default function App() {
+
   const [fontsLoaded] = useFonts({
     "Roboto-Medium": require("./src/fonts/Roboto-Medium.ttf"),
   });

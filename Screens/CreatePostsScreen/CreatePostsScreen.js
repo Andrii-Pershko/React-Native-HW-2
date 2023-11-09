@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import LocationSvg from "../../src/img/map-pin.svg";
 import TrashSvg from "../../src/img/trash.svg";
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 export const CreatePostsScreen = () => {
   const [postName, setPostName] = useState("");
